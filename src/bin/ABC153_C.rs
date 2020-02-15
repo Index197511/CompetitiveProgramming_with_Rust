@@ -1,3 +1,4 @@
+use std::cmp::min;
 #[allow(unused_macros)]
 macro_rules! input {
     (source = $s:expr, $($r:tt)*) => {
@@ -69,13 +70,27 @@ macro_rules! read_value {
         $next().parse::<$t>().expect("Parse error")
     };
 }
+//usage
+//input! {
+//  h: i32;
+//  v: [i32; n]
+//  x: [[i32; n]; m]
+//  f: chars <- Vec<char>
+//}
 
 fn main() {
     input! {
-        a: i32,
-        p: i32,
+        n: i64,
+        k: i64,
+        mut h: [i64; n]
     }
-    let ans = a - p;
+
+    h.sort_by_key(|&x| -x);
+    let mut ans: i64 = 0;
+    for i in 0..n {
+        if i >= k{
+            ans += h[i as usize];
+        }
+    }
     println!("{}", ans);
-    
 }

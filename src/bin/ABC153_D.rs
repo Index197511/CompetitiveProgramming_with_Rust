@@ -69,13 +69,24 @@ macro_rules! read_value {
         $next().parse::<$t>().expect("Parse error")
     };
 }
+//usage
+//input! {
+//  h: i32;
+//  v: [i32; n]
+//  x: [[i32; n]; m]
+//  f: chars <- Vec<char>
+//}
 
 fn main() {
-    input! {
-        a: i32,
-        p: i32,
+    input!(
+        mut h: i64
+    );
+    let mut ans: i64 = 0;
+    let mut c: i64 = 1;
+    while h > 0 {
+        h /= 2;
+        ans += c;
+        c *= 2;
     }
-    let ans = a - p;
     println!("{}", ans);
-    
 }

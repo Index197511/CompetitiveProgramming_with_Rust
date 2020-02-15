@@ -69,13 +69,27 @@ macro_rules! read_value {
         $next().parse::<$t>().expect("Parse error")
     };
 }
+//usage
+//input! {
+//  h: i32;
+//  v: [i32; n]
+//  x: [[i32; n]; m]
+//  f: chars <- Vec<char>
+//}
 
 fn main() {
     input! {
-        a: i32,
-        p: i32,
+        n: usize,
+        p: [i64; n]
     }
-    let ans = a - p;
+    let mut ans = 1;
+    let mut min_bound = p[0];
+
+    for i in 1..n {
+        ans += if p[i] <= min_bound {
+            min_bound = p[i];
+            1
+        } else { 0 };
+    }
     println!("{}", ans);
-    
 }

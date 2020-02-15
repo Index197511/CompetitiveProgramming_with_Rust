@@ -69,13 +69,27 @@ macro_rules! read_value {
         $next().parse::<$t>().expect("Parse error")
     };
 }
+//usage
+//input! {
+//  h: i32;
+//  v: [i32; n]
+//  x: [[i32; n]; m]
+//  f: chars <- Vec<char>
+//}
+
+fn gcd(x: i64, y: i64) -> i64 {
+    let mut x = x;
+    let mut y = y;
+    while y != 0 {
+        let t = y;
+        y = x % y;
+        x = t;
+    }
+    x
+}
 
 fn main() {
-    input! {
-        a: i32,
-        p: i32,
-    }
-    let ans = a - p;
-    println!("{}", ans);
-    
+    input!(a: i64, b: i64);
+    let g = gcd(a, b);
+    println!("{}", a * b / g);
 }
